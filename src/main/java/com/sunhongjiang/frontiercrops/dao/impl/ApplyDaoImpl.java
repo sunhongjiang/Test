@@ -79,6 +79,7 @@ public class ApplyDaoImpl implements ApplyDao {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
+		// 逻辑有问题
 		if (applier.equals("") || applier.equals(null)) {
 			sql = "SELECT * FROM tbl_apply WHERE title = ?";
 			try {
