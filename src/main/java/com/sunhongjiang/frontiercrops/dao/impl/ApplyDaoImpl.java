@@ -18,8 +18,24 @@ public class ApplyDaoImpl implements ApplyDao {
 
 	private static final Logger LOGGER = LogManager.getLogger(ApplyDaoImpl.class);
 
-	public void aduit() {
-		// TODO Auto-generated method stub
+	public void aduit(String id, String pass, String comment) {
+		
+		Connection conn = DBHelper.getInstance().getConnection();
+
+		String sql = "UPDATE tbl_apply SET pass = ?, coment = ? WHERE id = ?";
+
+		PreparedStatement ps = null;
+
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, pass);
+			ps.setString(2, comment);
+			ps.setString(3, id);
+		} catch (SQLException e) {
+			LOGGER.catching(e);
+		} finally {
+			DBHelper.closeConnection(conn);
+		}
 
 	}
 
@@ -58,7 +74,7 @@ public class ApplyDaoImpl implements ApplyDao {
 				apply.setStopArea(rs.getString("stoparea"));
 				apply.setCaptainId(rs.getString("captainid"));
 				apply.setPass(rs.getString("pass"));
-				apply.setComent(rs.getString("coment"));
+				apply.setComment(rs.getString("coment"));
 				apply.setApplier(rs.getString("applier"));
 				apply.setTitle(rs.getString("title"));
 			}
@@ -79,7 +95,7 @@ public class ApplyDaoImpl implements ApplyDao {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
-		// 逻辑有问题  
+		// 逻辑有问题
 		if (applier.equals("") || applier.equals(null)) {
 			sql = "SELECT * FROM tbl_apply WHERE title = ?";
 			try {
@@ -106,7 +122,7 @@ public class ApplyDaoImpl implements ApplyDao {
 					apply.setStopArea(rs.getString("stoparea"));
 					apply.setCaptainId(rs.getString("captainid"));
 					apply.setPass(rs.getString("pass"));
-					apply.setComent(rs.getString("coment"));
+					apply.setComment(rs.getString("coment"));
 					apply.setApplier(rs.getString("applier"));
 					apply.setTitle(rs.getString("title"));
 
@@ -145,7 +161,7 @@ public class ApplyDaoImpl implements ApplyDao {
 					apply.setStopArea(rs.getString("stoparea"));
 					apply.setCaptainId(rs.getString("captainid"));
 					apply.setPass(rs.getString("pass"));
-					apply.setComent(rs.getString("coment"));
+					apply.setComment(rs.getString("coment"));
 					apply.setApplier(rs.getString("applier"));
 					apply.setTitle(rs.getString("title"));
 
@@ -198,7 +214,7 @@ public class ApplyDaoImpl implements ApplyDao {
 				apply.setStopArea(rs.getString("stoparea"));
 				apply.setCaptainId(rs.getString("captainid"));
 				apply.setPass(rs.getString("pass"));
-				apply.setComent(rs.getString("coment"));
+				apply.setComment(rs.getString("coment"));
 				apply.setApplier(rs.getString("applier"));
 				apply.setTitle(rs.getString("title"));
 

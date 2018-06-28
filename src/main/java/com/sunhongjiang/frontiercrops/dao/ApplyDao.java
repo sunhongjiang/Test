@@ -7,7 +7,7 @@ import com.sunhongjiang.frontiercrops.domain.Apply;
 public interface ApplyDao {
 
 	// 审核
-	void aduit();
+	void aduit(String id, String pass, String comment);
 
 	// 查看某一项详情
 	Apply detail(String id);

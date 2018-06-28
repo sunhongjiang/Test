@@ -34,7 +34,7 @@ public class Apply {
 
 	private String pass;
 
-	private String coment;
+	private String comment;
 
 	private String applier;
 
@@ -46,7 +46,7 @@ public class Apply {
 
 	public Apply(String id, String shipName, String shipPort, String shipOwner, String navigationArea, String captain,
 			String captainAddress, String shipInstitute, String entrustUnit, String captainTel, String shipQuality,
-			String jobType, String ownerId, String stopArea, String captainId, String pass, String coment,
+			String jobType, String ownerId, String stopArea, String captainId, String pass, String comment,
 			String applier, String title) {
 		super();
 		this.id = id;
@@ -65,7 +65,7 @@ public class Apply {
 		this.stopArea = stopArea;
 		this.captainId = captainId;
 		this.pass = pass;
-		this.coment = coment;
+		this.comment = comment;
 		this.applier = applier;
 		this.title = title;
 	}
@@ -198,12 +198,12 @@ public class Apply {
 		this.pass = pass;
 	}
 
-	public String getComent() {
-		return coment;
+	public String getComment() {
+		return comment;
 	}
 
-	public void setComent(String coment) {
-		this.coment = coment;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 	public String getApplier() {
