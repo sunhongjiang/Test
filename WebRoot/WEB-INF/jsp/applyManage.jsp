@@ -72,8 +72,8 @@
 			</div>
 			<div class="list">
 				<ul>
-					<li>申请管理</li>
-					<li>问卷管理</li>
+					<li><a href="#">申请管理</a></li>
+					<li><a href="#">问卷管理</a></li>
 				</ul>
 			</div>
 		</div>
