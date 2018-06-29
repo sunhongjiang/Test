@@ -9,6 +9,13 @@ import com.sunhongjiang.frontiercrops.service.ApplyService;
 public class ApplyServiceImpl implements ApplyService {
 	private ApplyDao applyDao;
 
+	public ApplyServiceImpl() {
+	}
+
+	public ApplyServiceImpl(ApplyDao applyDao) {
+		this.applyDao = applyDao;
+	}
+
 	@Override
 	public void aduit(String id, String pass, String comment) {
 		this.applyDao.aduit(id, pass, comment);

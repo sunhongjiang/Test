@@ -47,9 +47,9 @@ public class DBHelper {
 			// Properties加载流
 			props.load(in);
 
-			url = props.getProperty("db.url");
-			username = props.getProperty("db.username");
-			password = props.getProperty("db.password");
+			url = props.getProperty("url");
+			username = props.getProperty("username");
+			password = props.getProperty("password");
 
 			LOGGER.trace("url={}", url);
 			LOGGER.trace("username={}", username);

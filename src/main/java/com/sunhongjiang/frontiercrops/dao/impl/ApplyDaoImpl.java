@@ -19,7 +19,7 @@ public class ApplyDaoImpl implements ApplyDao {
 	private static final Logger LOGGER = LogManager.getLogger(ApplyDaoImpl.class);
 
 	public void aduit(String id, String pass, String comment) {
-		
+
 		Connection conn = DBHelper.getInstance().getConnection();
 
 		String sql = "UPDATE tbl_apply SET pass = ?, coment = ? WHERE id = ?";
@@ -95,7 +95,7 @@ public class ApplyDaoImpl implements ApplyDao {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
-		// 逻辑有问题     
+		// 逻辑有问题
 		if (applier.equals("") || applier.equals(null)) {
 			sql = "SELECT * FROM tbl_apply WHERE title like ?";
 			try {
@@ -219,6 +219,7 @@ public class ApplyDaoImpl implements ApplyDao {
 				apply.setTitle(rs.getString("title"));
 
 				list.add(apply);
+				LOGGER.info("找到一个对象，放入到list中!");
 			}
 		} catch (SQLException e) {
 			LOGGER.catching(e);
