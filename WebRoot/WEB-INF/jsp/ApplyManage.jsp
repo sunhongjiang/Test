@@ -9,7 +9,7 @@
 <style type="text/css">
 </style>
 
-<script type="text/javascript" src="../scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="../lib/jquery-3.3.1.js"></script>
 
 <script>
 	$(function() {
