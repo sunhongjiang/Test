@@ -6,7 +6,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>申请管理</title>
+
 <style type="text/css">
+.left {
+	float: left;
+	width: 20%;
+	height: 100%;
+	background-color: grey;
+}
+
+.left .title {
+	background-color: white;
+	height: 50px;
+}
+
+.left .title p {
+	line-height: 50px;
+}
+
+.left .list li {
+	list-style: none;
+}
+
+.right {
+	width: 80%;
+	height: 100%;
+	float: right;
+}
 </style>
 
 <script type="text/javascript" src="../lib/jquery-3.3.1.js"></script>
@@ -16,8 +42,6 @@
 		$.ajax({
 			url : "servlet/infoShow",
 			type : "POST",
-			datatype : "json",
-			data : "",
 		}),
 		success: function(data){
 				
@@ -25,6 +49,16 @@
 		error: function(){
 			alert("error");
 		}
+	});
+	
+	$(".moredetail").on("click", function(){
+		$.ajax({
+			url : "servlet/detail",
+			type:"POST",
+			data:{
+				id:$(".moredetail").val();
+			}
+		})
 	});
 </script>
 
@@ -44,15 +78,15 @@
 			</div>
 		</div>
 
-		<div>
+		<div class="right">
 			<div></div>
 			<div>
 				<div>
 					<div>
-						<h2>申请管理</h2>
+						<h3>申请管理</h3>
 					</div>
 					<div>
-						<span>未审核</span> <span>已通过</span> <span>未通过</span>
+						<a href="#">未审核</a> <a href="#">已通过</a> <a href="#">未通过</a>
 					</div>
 					<div>
 						<div>共显示160份，每页显示16份</div>
@@ -61,30 +95,23 @@
 						</div>
 					</div>
 					<%
-						
+						List<Apply> apply = (List<Apply>) request.getAttribute("applys");
+						for (Apply a : apply) {
 					%>
-					<div>
+					<div class="moredetail">
 						<!-- 申请表标题 -->
 						<p>
-							<%
-								
-							%>
+							<%=a.getTitle()%>
 						</p>
 						<!-- 申请人 -->
 						<p>
-							<%
-								
-							%>
+							<%=a.getApplier()%>
 						</p>
 						<!-- 申请日期 -->
-						<p>
-							<%
-								
-							%>
-						</p>
+						<p>2018.6.29</p>
 					</div>
 					<%
-						
+						}
 					%>
 				</div>
 			</div>
