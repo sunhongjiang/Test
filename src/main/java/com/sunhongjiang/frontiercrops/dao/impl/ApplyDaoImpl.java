@@ -97,7 +97,7 @@ public class ApplyDaoImpl implements ApplyDao {
 
 		// 逻辑有问题     
 		if (applier.equals("") || applier.equals(null)) {
-			sql = "SELECT * FROM tbl_apply WHERE title = ?";
+			sql = "SELECT * FROM tbl_apply WHERE title like ?";
 			try {
 				ps = conn.prepareStatement(sql);
 				ps.setString(1, title);
@@ -136,7 +136,7 @@ public class ApplyDaoImpl implements ApplyDao {
 			}
 			return list;
 		} else {
-			sql = "SELECT * FROM tbl_apply WHERE applier = ?";
+			sql = "SELECT * FROM tbl_apply WHERE applier like ?";
 			try {
 				ps = conn.prepareStatement(sql);
 				ps.setString(1, applier);
