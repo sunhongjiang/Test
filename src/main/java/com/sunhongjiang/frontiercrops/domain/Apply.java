@@ -3,41 +3,42 @@ package com.sunhongjiang.frontiercrops.domain;
 public class Apply {
 
 	private String id;
-	
+
+	// 船名
 	private String shipName;
-
+	// 船籍港
 	private String shipPort;
-
+	// 船主
 	private String shipOwner;
-
+	// 航行区域
 	private String navigationArea;
-
+	// 船上负责人
 	private String captain;
-
+	// 负责人现住址
 	private String captainAddress;
-
+	// 船舶所属单位
 	private String shipInstitute;
-
+	// 委托单位
 	private String entrustUnit;
-
+	// 负责人联系方式
 	private String captainTel;
-
+	// 船质
 	private String shipQuality;
-
+	// 作业类型
 	private String jobType;
-
+	// 船主身份证号码
 	private String ownerId;
-
+	// 常住地泊点
 	private String stopArea;
-
+	// 船上负责人身份证号码
 	private String captainId;
-
+	// 是否通过
 	private String pass;
-
+	// 审核意见
 	private String comment;
-
+	// 申请人
 	private String applier;
-
+	// 申请表标题
 	private String title;
 
 	public Apply() {

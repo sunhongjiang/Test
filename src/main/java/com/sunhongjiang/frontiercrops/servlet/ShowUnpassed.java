@@ -18,25 +18,23 @@ import com.sunhongjiang.frontiercrops.domain.Apply;
 import com.sunhongjiang.frontiercrops.service.ApplyService;
 import com.sunhongjiang.frontiercrops.service.impl.ApplyServiceImpl;
 
-@WebServlet(name = "infoShow", urlPatterns = { "/servlet/infoShow" })
-public class InfoShow extends HttpServlet {
-
+@WebServlet(name = "showUnpassed", urlPatterns = { "/servlet/showUnpassed" })
+public class ShowUnpassed extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger LOGGER = LogManager.getLogger(InfoShow.class);
+	private static final Logger LOGGER = LogManager.getLogger(ShowUnpassed.class);
 
-	public InfoShow() {
+	public ShowUnpassed() {
 		super();
-
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		LOGGER.info("doGet() is invoked...");
 
 		ApplyDao applyDao = new ApplyDaoImpl();
 		ApplyService applyService = new ApplyServiceImpl(applyDao);
-		List<Apply> list = applyService.getAll();
+
+		List<Apply> list = applyService.getUnpassed();
 
 		request.setAttribute("applys", list);
 

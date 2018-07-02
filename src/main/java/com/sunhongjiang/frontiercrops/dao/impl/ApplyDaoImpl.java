@@ -184,7 +184,7 @@ public class ApplyDaoImpl implements ApplyDao {
 
 		Connection conn = DBHelper.getInstance().getConnection();
 
-		String sql = "SELECT * FROM tbl_apply";
+		String sql = "SELECT * FROM tbl_apply t WHERE t.pass = 0";
 
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -219,7 +219,111 @@ public class ApplyDaoImpl implements ApplyDao {
 				apply.setTitle(rs.getString("title"));
 
 				list.add(apply);
-				LOGGER.info("找到一个对象，放入到list中!");
+				LOGGER.info("找到一个未审核对象，放入到list中!");
+			}
+		} catch (SQLException e) {
+			LOGGER.catching(e);
+		} finally {
+			DBHelper.closeResultSet(rs);
+			DBHelper.closeStatement(ps);
+		}
+		return list;
+	}
+
+	@Override
+	public List<Apply> getPassed() {
+		List<Apply> list = new ArrayList<>();
+
+		Connection conn = DBHelper.getInstance().getConnection();
+
+		String sql = "SELECT * FROM tbl_apply t WHERE t.pass = 1";
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			Apply apply = null;
+
+			while (rs.next()) {
+				apply = new Apply();
+
+				apply.setId(rs.getString("id"));
+				apply.setShipName(rs.getString("shipname"));
+				apply.setShipPort(rs.getString("shipport"));
+				apply.setShipOwner(rs.getString("shipowner"));
+				apply.setNavigationArea(rs.getString("navigationarea"));
+				apply.setCaptain(rs.getString("captain"));
+				apply.setCaptainAddress(rs.getString("captainaddress"));
+				apply.setShipInstitute(rs.getString("shipinstitute"));
+				apply.setEntrustUnit(rs.getString("entrustunit"));
+				apply.setCaptainTel(rs.getString("captaintel"));
+				apply.setShipQuality(rs.getString("shipquality"));
+				apply.setJobType(rs.getString("jobtype"));
+				apply.setOwnerId(rs.getString("ownerid"));
+				apply.setStopArea(rs.getString("stoparea"));
+				apply.setCaptainId(rs.getString("captainid"));
+				apply.setPass(rs.getString("pass"));
+				apply.setComment(rs.getString("coment"));
+				apply.setApplier(rs.getString("applier"));
+				apply.setTitle(rs.getString("title"));
+
+				list.add(apply);
+				LOGGER.info("找到一个审核通过对象，放入到list中!");
+			}
+		} catch (SQLException e) {
+			LOGGER.catching(e);
+		} finally {
+			DBHelper.closeResultSet(rs);
+			DBHelper.closeStatement(ps);
+		}
+		return list;
+	}
+
+	@Override
+	public List<Apply> getUnpassed() {
+		List<Apply> list = new ArrayList<>();
+
+		Connection conn = DBHelper.getInstance().getConnection();
+
+		String sql = "SELECT * FROM tbl_apply t WHERE t.pass = 2";
+
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			Apply apply = null;
+
+			while (rs.next()) {
+				apply = new Apply();
+
+				apply.setId(rs.getString("id"));
+				apply.setShipName(rs.getString("shipname"));
+				apply.setShipPort(rs.getString("shipport"));
+				apply.setShipOwner(rs.getString("shipowner"));
+				apply.setNavigationArea(rs.getString("navigationarea"));
+				apply.setCaptain(rs.getString("captain"));
+				apply.setCaptainAddress(rs.getString("captainaddress"));
+				apply.setShipInstitute(rs.getString("shipinstitute"));
+				apply.setEntrustUnit(rs.getString("entrustunit"));
+				apply.setCaptainTel(rs.getString("captaintel"));
+				apply.setShipQuality(rs.getString("shipquality"));
+				apply.setJobType(rs.getString("jobtype"));
+				apply.setOwnerId(rs.getString("ownerid"));
+				apply.setStopArea(rs.getString("stoparea"));
+				apply.setCaptainId(rs.getString("captainid"));
+				apply.setPass(rs.getString("pass"));
+				apply.setComment(rs.getString("coment"));
+				apply.setApplier(rs.getString("applier"));
+				apply.setTitle(rs.getString("title"));
+
+				list.add(apply);
+				LOGGER.info("找到一个审核未通过对象，放入到list中!");
 			}
 		} catch (SQLException e) {
 			LOGGER.catching(e);

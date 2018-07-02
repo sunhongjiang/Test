@@ -1,6 +1,7 @@
 package com.sunhongjiang.frontiercrops.servlet;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,24 +18,27 @@ import com.sunhongjiang.frontiercrops.domain.Apply;
 import com.sunhongjiang.frontiercrops.service.ApplyService;
 import com.sunhongjiang.frontiercrops.service.impl.ApplyServiceImpl;
 
-@WebServlet(name = "detail", urlPatterns = { "/servlet/detail" })
-public class Detail extends HttpServlet {
+@WebServlet(name = "showPassed", urlPatterns = { "/servlet/showPassed" })
+public class ShowPassed extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOGGER = LogManager.getLogger(ShowPassed.class);
 
-	private static final Logger LOGGER = LogManager.getLogger(Detail.class);
-
-	public Detail() {
+	public ShowPassed() {
 		super();
-
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		LOGGER.info("doGet() is invoked...");
+
 		ApplyDao applyDao = new ApplyDaoImpl();
 		ApplyService applyService = new ApplyServiceImpl(applyDao);
-		String id = request.getParameter("id");
-		Apply apply = applyService.detail(id);
-		request.setAttribute("detail", apply);
+
+		List<Apply> list = applyService.getPassed();
+
+		request.setAttribute("applys", list);
+
+		request.getRequestDispatcher("/WEB-INF/jsp/applyManage.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -36,4 +36,14 @@ public class ApplyServiceImpl implements ApplyService {
 		return this.applyDao.getAll();
 	}
 
+	@Override
+	public List<Apply> getPassed() {
+		return this.applyDao.getPassed();
+	}
+
+	@Override
+	public List<Apply> getUnpassed() {
+		return this.applyDao.getUnpassed();
+	}
+
 }

@@ -14,6 +14,12 @@ public interface ApplyService {
 	// 关键字查找符合条件的申请
 	List<Apply> search(String applier, String title);
 
-	// 管理页面全部展示
+	// 管理页面全部展示(未审核数据)
 	List<Apply> getAll();
+
+	// 管理页面展示已通过数据
+	List<Apply> getPassed();
+
+	// 管理页面展示未通过数据
+	List<Apply> getUnpassed();
 }
