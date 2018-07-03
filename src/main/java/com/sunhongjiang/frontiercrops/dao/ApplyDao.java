@@ -13,7 +13,7 @@ public interface ApplyDao {
 	Apply detail(String id);
 
 	// 关键字查找符合条件的申请
-	List<Apply> search(String applier, String title);
+	List<Apply> search(String text);
 
 	// 管理页面全部展示(未审核数据)
 	List<Apply> getAll();

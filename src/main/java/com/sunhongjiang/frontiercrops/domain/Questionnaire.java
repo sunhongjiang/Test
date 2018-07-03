@@ -1,21 +1,33 @@
 package com.sunhongjiang.frontiercrops.domain;
 
+import java.sql.Array;
+
 public class Questionnaire {
+	private String id;
 	private String title;
 	private String description;
 	private String question;
-	private String[] answers;
+	private Array answers;
 
 	public Questionnaire() {
 
 	}
 
-	public Questionnaire(String title, String description, String question, String[] answers) {
+	public Questionnaire(String id, String title, String description, String question, Array answers) {
 		super();
+		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.question = question;
 		this.answers = answers;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getTitle() {
@@ -42,12 +54,12 @@ public class Questionnaire {
 		this.question = question;
 	}
 
-	public String[] getAnswers() {
+	public Array getAnswers() {
 		return answers;
 	}
 
-	public void setAnswers(String[] answers) {
-		this.answers = answers;
+	public void setAnswers(Array array) {
+		this.answers = array;
 	}
 
 }

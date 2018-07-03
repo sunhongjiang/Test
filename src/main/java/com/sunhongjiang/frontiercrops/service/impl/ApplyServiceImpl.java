@@ -27,8 +27,8 @@ public class ApplyServiceImpl implements ApplyService {
 	}
 
 	@Override
-	public List<Apply> search(String applier, String title) {
-		return this.applyDao.search(applier, title);
+	public List<Apply> search(String text) {
+		return this.applyDao.search(text);
 	}
 
 	@Override

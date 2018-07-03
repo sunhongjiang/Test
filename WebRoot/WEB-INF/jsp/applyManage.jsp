@@ -4,35 +4,70 @@
 	import="java.util.*, java.text.*, com.sunhongjiang.frontiercrops.domain.*, com.sunhongjiang.frontiercrops.service.*"%>
 <html>
 <head>
-<script type="text/javascript" src="../lib/jquery-3.3.1.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>申请管理</title>
 
 <style type="text/css">
+body {
+	margin: 0px;
+}
+
 .left {
 	float: left;
 	width: 20%;
 	height: 100%;
-	background-color: grey;
+	background-color: #384042;
 }
 
 .left .title {
-	background-color: white;
+	background-color: #20A8D8;
 	height: 50px;
+	padding:0px 10px;
 }
 
 .left .title p {
 	line-height: 50px;
+	margin: 0px;
+	color: #FFF;
+}
+
+.left .list ul {
+	padding: 0px;
 }
 
 .left .list li {
 	list-style: none;
 }
 
+.left .list input {
+	color: #FFF;
+	background-color: #384042;
+	border: none;
+	outline: none;
+	width: 100%;
+}
+
+.left .list li :hover {
+	background-color: #000;
+}
+
 .right {
 	width: 80%;
 	height: 100%;
 	float: right;
+}
+
+.right .head {
+	height: 50px;
+}
+
+.right .inner {
+	padding: 10px 20px;
+	background-color: #F3F4F8;
+}
+
+.right .info {
+	background-color: #FFF;
 }
 
 .state {
@@ -45,6 +80,12 @@
 	align-content: space-between;
 	align-items: center;
 	align-content: space-between;
+	flex-flow: wrap;
+}
+
+.flex-between:after {
+	content: "";
+	width: 280px;
 }
 
 .flex-center {
@@ -55,112 +96,96 @@
 	text-align: center;
 }
 
+.cover {
+	display: flex;
+	justify-content: space-between;
+	align-content: space-between;
+	align-items: center;
+	align-content: space-between;
+}
+
 .moredetail {
-	margin: 10px 0px;
+	margin: 10px 10px;
 	display: inline-block;
+	border: 1px solid black;
+	padding: 5px;
+	background-Color: #FAFAFA;
 }
 
 .moredetail input {
-	background-Color: white;
+	background-Color: #FAFAFA;
 	display: block;
-	width: 300px;
+	width: 250px;
 	border: none;
-}
-
-#dialog {
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	z-index: 999;
-}
-
-#dialog .layer {
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	z-index: 1000;
-	background: gray;
-	filter: alpha(opacity = 60);
-	-moz-opacity: 0.6; /*Firefox私有，透明度50%*/
-	opacity: 0.6; /*其他，透明度50%*/
-}
-
-#dialog #center {
-	position: absolute;
-	left: 200px;
-	right: 200px;
-	background: rgb(255, 255, 255);
-	margin: 100px auto;
-	padding: 60px 100px 100px 100px;
-	z-index: 1001;
 }
 </style>
 
 
-
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery-3.3.1.js"></script>
 <script>
-	$(function() {
-		console.log("aaa"), $.ajax({
-			url : "servlet/infoShow",
-			type : "POST",
+	$(document).ready(function() {
 
-			success : function(data) {
+		$(".unchecked").on("click", function() {
+			$.ajax({
+				url : "servlet/showUnchecked",
+				type : "POST",
 
-			},
-			error : function() {
-				alert("error");
-			}
-		})
-	});
+				success : function(data) {
+					alert("获取未审核列表成功");
+				},
+				error : function() {
+					alert("获取未审核列表失败");
+				}
+			})
+		});
 
-	$(".passed").live("click", function() {
-		console.log("aaa"), $.ajax({
-			url : "servlet/showPassed",
-			type : "POST",
+		$(".passed").on("click", function() {
+			$.ajax({
+				url : "servlet/showPassed",
+				type : "POST",
 
-			success : function(data) {
+				success : function(data) {
+					alert("获取审核通过列表成功");
+				},
+				error : function() {
+					alert("获取审核通过列表失败");
+				}
+			})
+		});
 
-			},
-			error : function() {
-				alert("error");
-			}
-		})
-	});
+		$(".unpassed").on("click", function() {
+			$.ajax({
+				url : "servlet/showUnpassed",
+				type : "POST",
 
-	$("unpassed").on("click", function() {
-		$.ajax({
-			url : "servlet/showUnpassed",
-			type : "POST",
+				success : function(data) {
+					alert("获取审核不通过列表成功");
+				},
+				error : function() {
+					alert("获取审核不通过列表失败");
+				}
+			})
+		});
 
-			success : function(data) {
+		$(".moredetail").on("click", function() {
 
-			},
-			error : function() {
-				alert("error");
-			}
-		})
-	});
+			$.ajax({
+				url : "servlet/detail",
+				type : "POST",
+				dataType : "json",
+				data : {
+					id : $("#idtopost").val()
+				},
 
-	$(".moredetail").on("click", function() {
-
-		$.ajax({
-			url : "servlet/detail",
-			type : "POST",
-			data : {
-				id :
-<%=%>
-	},
-			success : function(data) {
-				console.log(data);
-			},
-			error : function() {
-				alert("error");
-			}
-		})
+				success : function(data) {
+					console.log(data);
+				},
+				error : function() {
+					alert("点击查看详细信息失败");
+				}
+			})
+		});
 	});
 </script>
 
@@ -174,62 +199,57 @@
 			</div>
 			<div class="list">
 				<ul>
-					<li><a href="#">申请管理</a></li>
-					<li><a href="#">问卷管理</a></li>
+					<li><input type="button" value="申请管理" /></li>
+					<li><input type="button" value="问卷管理" /></li>
 				</ul>
 			</div>
 		</div>
 
 		<div class="right">
-			<div>this is head</div>
-			<div>
-				<div>
+			<div class="head"></div>
+			<div class="inner">
+				<div class="info">
 					<div>
 						<h3>申请管理</h3>
 					</div>
 					<div class="state">
 						<!-- 3种请求 -->
-						<a class="unchecked">未审核</a> <a class="passed">已通过</a> <a
-							class="unpassed">未通过</a>
+						<input type="button" class="unchecked" value="未审核" /> <input
+							type="button" class="passed" value="已通过" /> <input type="button"
+							class="unpassed" value="未通过" />
+
 					</div>
-					<div class="flex-between">
+					<div style="padding: 10px;">
 						<div style="display: inline-block">共显示160份，每页显示16份</div>
-						<div style="display: inline-block">
+						<div style="display: inline-block; float: right">
 							<input type="text" placeholder="输入关键字查找..." name="search">
 						</div>
 					</div>
-					<%
-						List<Apply> apply = (List<Apply>) request.getAttribute("applys");
-						for (Apply a : apply) {
-					%>
-					<div class="moredetail">
-						<!-- 申请表标题 -->
-						<input type="text" name="title" value="<%=a.getTitle()%>"
-							readonly="readonly" />
+					<div class="flex-between">
+						<%
+							List<Apply> apply = (List<Apply>) request.getAttribute("applys");
+							for (Apply a : apply) {
+						%>
+						<div class="moredetail">
+							<!-- 申请表标题 -->
+							<input type="text" name="title" value="<%=a.getTitle()%>"
+								readonly="readonly" />
 
-						<!-- 申请人 -->
-						<input type="text" name="applier" value="<%=a.getApplier()%>"
-							readonly="readonly" />
+							<!-- 申请人 -->
+							<input type="text" name="applier" value="<%=a.getApplier()%>"
+								readonly="readonly" />
 
-						<!-- 申请日期 -->
-						<input type="text" name="date" value="2018.6.29"
-							readonly="readonly" />
-					</div>
-					<%
-						}
-					%>
-
-					<div id="dialog" style="display: none">
-						<div class="layer"></div>
-						<div id="center">
-							<div>
-								<span>申请详情</span> <span>/</span> <span>申请管理</span>
-							</div>
-							<%
-								Apply detail = (Apply) request.getAttribute("detail");
-							%>
-
+							<!-- 申请日期 -->
+							<input type="text" name="date" value="2018.6.29"
+								readonly="readonly" /> <input class="idtopost" type="text"
+								name="id" value="<%=a.getId()%>>" style="display: none" />
 						</div>
+
+
+						<%
+							}
+						%>
+
 					</div>
 				</div>
 			</div>
