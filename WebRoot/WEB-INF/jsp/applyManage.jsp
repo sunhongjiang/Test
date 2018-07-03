@@ -22,7 +22,7 @@ body {
 .left .title {
 	background-color: #20A8D8;
 	height: 50px;
-	padding:0px 10px;
+	padding: 0px 10px;
 }
 
 .left .title p {
