@@ -40,6 +40,7 @@ public class ApplyDaoImpl implements ApplyDao {
 	}
 
 	public Apply detail(String id) {
+		LOGGER.info(id);
 		Apply apply = null;
 
 		Connection conn = DBHelper.getInstance().getConnection();
@@ -77,6 +78,7 @@ public class ApplyDaoImpl implements ApplyDao {
 				apply.setComment(rs.getString("coment"));
 				apply.setApplier(rs.getString("applier"));
 				apply.setTitle(rs.getString("title"));
+				LOGGER.info("detail...");
 			}
 
 		} catch (SQLException e) {

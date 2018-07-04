@@ -18,7 +18,7 @@ import com.sunhongjiang.frontiercrops.domain.Apply;
 import com.sunhongjiang.frontiercrops.service.ApplyService;
 import com.sunhongjiang.frontiercrops.service.impl.ApplyServiceImpl;
 
-@WebServlet(name = "showUnchecked", urlPatterns = { "/servlet/showUnchecked" })
+@WebServlet(name = "showUnchecked", urlPatterns = { "/showUnchecked" })
 public class ShowUnchecked extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -33,7 +33,7 @@ public class ShowUnchecked extends HttpServlet {
 			throws ServletException, IOException {
 
 		LOGGER.info("doGet() is invoked...");
-
+		response.setContentType("application/json;charset=utf-8");
 		ApplyDao applyDao = new ApplyDaoImpl();
 		ApplyService applyService = new ApplyServiceImpl(applyDao);
 		List<Apply> list = applyService.getAll();

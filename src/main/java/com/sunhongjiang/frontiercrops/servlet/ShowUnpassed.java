@@ -18,7 +18,7 @@ import com.sunhongjiang.frontiercrops.domain.Apply;
 import com.sunhongjiang.frontiercrops.service.ApplyService;
 import com.sunhongjiang.frontiercrops.service.impl.ApplyServiceImpl;
 
-@WebServlet(name = "showUnpassed", urlPatterns = { "/servlet/showUnpassed" })
+@WebServlet(name = "showUnpassed", urlPatterns = { "/showUnpassed" })
 public class ShowUnpassed extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOGGER = LogManager.getLogger(ShowUnpassed.class);

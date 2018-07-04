@@ -30,10 +30,12 @@ public class Detail extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		LOGGER.info("doGet() is invoked...");
 		ApplyDao applyDao = new ApplyDaoImpl();
 		ApplyService applyService = new ApplyServiceImpl(applyDao);
 		String id = request.getParameter("id");
 		Apply apply = applyService.detail(id);
+		LOGGER.info(apply.getTitle());
 		request.setAttribute("detail", apply);
 	}
 

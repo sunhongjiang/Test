@@ -2,6 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ page
 	import="java.util.*, java.text.*, com.sunhongjiang.frontiercrops.domain.*, com.sunhongjiang.frontiercrops.service.*"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -120,7 +121,6 @@ body {
 }
 </style>
 
-
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/jquery-3.3.1.js"></script>
 <script>
@@ -128,11 +128,12 @@ body {
 
 		$(".unchecked").on("click", function() {
 			$.ajax({
-				url : "servlet/showUnchecked",
+				url : "showUnchecked",
 				type : "POST",
 
 				success : function(data) {
-					alert("获取未审核列表成功");
+					console.log(data);
+					
 				},
 				error : function() {
 					alert("获取未审核列表失败");
@@ -142,11 +143,12 @@ body {
 
 		$(".passed").on("click", function() {
 			$.ajax({
-				url : "servlet/showPassed",
+				url : "showPassed",
 				type : "POST",
 
 				success : function(data) {
-					alert("获取审核通过列表成功");
+					console.log(data);
+					
 				},
 				error : function() {
 					alert("获取审核通过列表失败");
@@ -156,11 +158,12 @@ body {
 
 		$(".unpassed").on("click", function() {
 			$.ajax({
-				url : "servlet/showUnpassed",
+				url : "showUnpassed",
 				type : "POST",
 
 				success : function(data) {
-					alert("获取审核不通过列表成功");
+					console.log(data);
+			
 				},
 				error : function() {
 					alert("获取审核不通过列表失败");
@@ -169,13 +172,12 @@ body {
 		});
 
 		$(".moredetail").on("click", function() {
-
 			$.ajax({
 				url : "servlet/detail",
 				type : "POST",
-				dataType : "json",
+
 				data : {
-					id : $("#idtopost").val()
+					id : $("input[name='id']").val(),
 				},
 
 				success : function(data) {
@@ -229,6 +231,7 @@ body {
 						<%
 							List<Apply> apply = (List<Apply>) request.getAttribute("applys");
 							for (Apply a : apply) {
+								System.out.print(a.getId());
 						%>
 						<div class="moredetail">
 							<!-- 申请表标题 -->
@@ -241,16 +244,18 @@ body {
 
 							<!-- 申请日期 -->
 							<input type="text" name="date" value="2018.6.29"
-								readonly="readonly" /> <input class="idtopost" type="text"
-								name="id" value="<%=a.getId()%>>" style="display: none" />
-						</div>
+								readonly="readonly" />
 
+							<!-- id -->
+							<input type="text" name="id" value="<%=a.getId()%>"
+								style="display: none" />
+						</div>
 
 						<%
 							}
 						%>
-
 					</div>
+
 				</div>
 			</div>
 		</div>
