@@ -1,0 +1,110 @@
+body {
+	margin: 0px;
+}
+
+.left {
+	float: left;
+	width: 20%;
+	height: 100%;
+	background-color: #384042;
+}
+
+.left .title {
+	background-color: #20A8D8;
+	height: 50px;
+	padding: 0px 10px;
+}
+
+.left .title p {
+	line-height: 50px;
+	margin: 0px;
+	color: #FFF;
+}
+
+.left .list ul {
+	padding: 0px;
+}
+
+.left .list li {
+	list-style: none;
+}
+
+.left .list input {
+	color: #FFF;
+	background-color: #384042;
+	border: none;
+	outline: none;
+	width: 100%;
+}
+
+.left .list li :hover {
+	background-color: #000;
+}
+
+.right {
+	width: 80%;
+	height: 100%;
+	float: right;
+}
+
+.right .head {
+	height: 50px;
+}
+
+.right .inner {
+	padding: 10px 20px;
+	background-color: #F3F4F8;
+}
+
+.right .info {
+	background-color: #FFF;
+}
+
+.state {
+	margin-bottom: 20px;
+}
+
+.flex-between {
+	display: flex;
+	justify-content: space-between;
+	align-content: space-between;
+	align-items: center;
+	align-content: space-between;
+	flex-flow: wrap;
+}
+
+.flex-between:after {
+	content: "";
+	width: 280px;
+}
+
+.flex-center {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+.cover {
+	display: flex;
+	justify-content: space-between;
+	align-content: space-between;
+	align-items: center;
+	align-content: space-between;
+}
+
+.moredetail {
+	margin: 10px 10px;
+	display: inline-block;
+	border: 1px solid black;
+	padding: 5px;
+	background-Color: #FAFAFA;
+}
+
+.moredetail input {
+	background-Color: #FAFAFA;
+	display: block;
+	width: 250px;
+	border: none;
+}

@@ -7,119 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>申请管理</title>
-
-<style type="text/css">
-body {
-	margin: 0px;
-}
-
-.left {
-	float: left;
-	width: 20%;
-	height: 100%;
-	background-color: #384042;
-}
-
-.left .title {
-	background-color: #20A8D8;
-	height: 50px;
-	padding: 0px 10px;
-}
-
-.left .title p {
-	line-height: 50px;
-	margin: 0px;
-	color: #FFF;
-}
-
-.left .list ul {
-	padding: 0px;
-}
-
-.left .list li {
-	list-style: none;
-}
-
-.left .list input {
-	color: #FFF;
-	background-color: #384042;
-	border: none;
-	outline: none;
-	width: 100%;
-}
-
-.left .list li :hover {
-	background-color: #000;
-}
-
-.right {
-	width: 80%;
-	height: 100%;
-	float: right;
-}
-
-.right .head {
-	height: 50px;
-}
-
-.right .inner {
-	padding: 10px 20px;
-	background-color: #F3F4F8;
-}
-
-.right .info {
-	background-color: #FFF;
-}
-
-.state {
-	margin-bottom: 20px;
-}
-
-.flex-between {
-	display: flex;
-	justify-content: space-between;
-	align-content: space-between;
-	align-items: center;
-	align-content: space-between;
-	flex-flow: wrap;
-}
-
-.flex-between:after {
-	content: "";
-	width: 280px;
-}
-
-.flex-center {
-	display: flex;
-	justify-content: center;
-	align-content: center;
-	align-items: center;
-	text-align: center;
-}
-
-.cover {
-	display: flex;
-	justify-content: space-between;
-	align-content: space-between;
-	align-items: center;
-	align-content: space-between;
-}
-
-.moredetail {
-	margin: 10px 10px;
-	display: inline-block;
-	border: 1px solid black;
-	padding: 5px;
-	background-Color: #FAFAFA;
-}
-
-.moredetail input {
-	background-Color: #FAFAFA;
-	display: block;
-	width: 250px;
-	border: none;
-}
-</style>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/js/jquery-3.3.1.js"></script>
@@ -133,7 +22,7 @@ body {
 
 				success : function(data) {
 					console.log(data);
-					
+
 				},
 				error : function() {
 					alert("获取未审核列表失败");
@@ -148,7 +37,7 @@ body {
 
 				success : function(data) {
 					console.log(data);
-					
+
 				},
 				error : function() {
 					alert("获取审核通过列表失败");
@@ -163,7 +52,7 @@ body {
 
 				success : function(data) {
 					console.log(data);
-			
+
 				},
 				error : function() {
 					alert("获取审核不通过列表失败");
@@ -171,9 +60,10 @@ body {
 			})
 		});
 
+
 		$(".moredetail").on("click", function() {
 			$.ajax({
-				url : "servlet/detail",
+				url : "detail",
 				type : "POST",
 
 				data : {
@@ -188,6 +78,7 @@ body {
 				}
 			})
 		});
+
 	});
 </script>
 
@@ -233,22 +124,25 @@ body {
 							for (Apply a : apply) {
 								System.out.print(a.getId());
 						%>
+
 						<div class="moredetail">
-							<!-- 申请表标题 -->
-							<input type="text" name="title" value="<%=a.getTitle()%>"
-								readonly="readonly" />
+							<form action="/detail" method="post">
+								<!-- 申请表标题 -->
+								<input type="text" name="title" value="<%=a.getTitle()%>"
+									readonly="readonly" />
 
-							<!-- 申请人 -->
-							<input type="text" name="applier" value="<%=a.getApplier()%>"
-								readonly="readonly" />
+								<!-- 申请人 -->
+								<input type="text" name="applier" value="<%=a.getApplier()%>"
+									readonly="readonly" />
 
-							<!-- 申请日期 -->
-							<input type="text" name="date" value="2018.6.29"
-								readonly="readonly" />
+								<!-- 申请日期 -->
+								<input type="text" name="date" value="2018.6.29"
+									readonly="readonly" />
 
-							<!-- id -->
-							<input type="text" name="id" value="<%=a.getId()%>"
-								style="display: none" />
+								<!-- id -->
+								<input type="text" name="id" value="<%=a.getId()%>"
+									style="display: none" />
+							</form>
 						</div>
 
 						<%

@@ -17,7 +17,7 @@ import com.sunhongjiang.frontiercrops.domain.Apply;
 import com.sunhongjiang.frontiercrops.service.ApplyService;
 import com.sunhongjiang.frontiercrops.service.impl.ApplyServiceImpl;
 
-@WebServlet(name = "detail", urlPatterns = { "/servlet/detail" })
+@WebServlet(name = "detail", urlPatterns = { "/detail" })
 public class Detail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -37,6 +37,7 @@ public class Detail extends HttpServlet {
 		Apply apply = applyService.detail(id);
 		LOGGER.info(apply.getTitle());
 		request.setAttribute("detail", apply);
+		request.getRequestDispatcher("/WEB-INF/jsp/applyDetail.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
