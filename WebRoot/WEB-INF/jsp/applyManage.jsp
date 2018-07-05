@@ -60,6 +60,21 @@
 			})
 		});
 
+		$(".searcher").on("blur", function() {
+			$.ajax({
+				url : "applySearch",
+				type : "POST",
+				data : {
+					param : $("input[name='search']").val(),
+				},
+				success : function(data) {
+					console.log(data);
+				},
+				error : function() {
+					alert("搜索出现了点问题");
+				}
+			})
+		});
 
 		$(".moredetail").on("click", function() {
 			$.ajax({
@@ -102,11 +117,11 @@
 			<div class="head"></div>
 			<div class="inner">
 				<div class="info">
-					<div>
+					<div style="padding: 10px">
 						<h3>申请管理</h3>
 					</div>
-					<div class="state">
-						<!-- 3种请求 -->
+					<div class="state" style="padding-left: 10px">
+
 						<input type="button" class="unchecked" value="未审核" /> <input
 							type="button" class="passed" value="已通过" /> <input type="button"
 							class="unpassed" value="未通过" />
@@ -115,7 +130,8 @@
 					<div style="padding: 10px;">
 						<div style="display: inline-block">共显示160份，每页显示16份</div>
 						<div style="display: inline-block; float: right">
-							<input type="text" placeholder="输入关键字查找..." name="search">
+							<input type="text" placeholder="输入关键字查找..." name="search"
+								class="searcher">
 						</div>
 					</div>
 					<div class="flex-between">

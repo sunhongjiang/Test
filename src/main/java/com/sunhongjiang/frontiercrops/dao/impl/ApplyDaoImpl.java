@@ -89,56 +89,51 @@ public class ApplyDaoImpl implements ApplyDao {
 
 	@SuppressWarnings("resource")
 	public List<Apply> search(String text) {
+		LOGGER.info(text);
 		List<Apply> list = new ArrayList<>();
 		Apply apply = null;
-		String sql = "";
-
+		String sql = "SELECT * FROM tbl_apply WHERE title like ? OR applier like ?";
 		Connection conn = DBHelper.getInstance().getConnection();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
-		if (text.equals("") || text.equals(null)) {
-			sql = "SELECT * FROM tbl_apply WHERE title like ? OR applier like ?";
-			try {
-				ps = conn.prepareStatement(sql);
-				ps.setString(1, "%" + text + "%");
-				ps.setString(2, "%" + text + "%");
-				rs = ps.executeQuery();
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, "%" + text + "%");
+			ps.setString(2, "%" + text + "%");
+			LOGGER.info(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				apply = new Apply();
+				apply.setId(rs.getString("id"));
+				apply.setShipName(rs.getString("shipname"));
+				apply.setShipPort(rs.getString("shipport"));
+				apply.setShipOwner(rs.getString("shipowner"));
+				apply.setNavigationArea(rs.getString("navigationarea"));
+				apply.setCaptain(rs.getString("captain"));
+				apply.setCaptainAddress(rs.getString("captainaddress"));
+				apply.setShipInstitute(rs.getString("shipinstitute"));
+				apply.setEntrustUnit(rs.getString("entrustunit"));
+				apply.setCaptainTel(rs.getString("captaintel"));
+				apply.setShipQuality(rs.getString("shipquality"));
+				apply.setJobType(rs.getString("jobtype"));
+				apply.setOwnerId(rs.getString("ownerid"));
+				apply.setStopArea(rs.getString("stoparea"));
+				apply.setCaptainId(rs.getString("captainid"));
+				apply.setPass(rs.getString("pass"));
+				apply.setComment(rs.getString("coment"));
+				apply.setApplier(rs.getString("applier"));
+				apply.setTitle(rs.getString("title"));
 
-				while (rs.next()) {
-					apply = new Apply();
-
-					apply.setId(rs.getString("id"));
-					apply.setShipName(rs.getString("shipname"));
-					apply.setShipPort(rs.getString("shipport"));
-					apply.setShipOwner(rs.getString("shipowner"));
-					apply.setNavigationArea(rs.getString("navigationarea"));
-					apply.setCaptain(rs.getString("captain"));
-					apply.setCaptainAddress(rs.getString("captainaddress"));
-					apply.setShipInstitute(rs.getString("shipinstitute"));
-					apply.setEntrustUnit(rs.getString("entrustunit"));
-					apply.setCaptainTel(rs.getString("captaintel"));
-					apply.setShipQuality(rs.getString("shipquality"));
-					apply.setJobType(rs.getString("jobtype"));
-					apply.setOwnerId(rs.getString("ownerid"));
-					apply.setStopArea(rs.getString("stoparea"));
-					apply.setCaptainId(rs.getString("captainid"));
-					apply.setPass(rs.getString("pass"));
-					apply.setComment(rs.getString("coment"));
-					apply.setApplier(rs.getString("applier"));
-					apply.setTitle(rs.getString("title"));
-
-					list.add(apply);
-				}
-			} catch (SQLException e) {
-				LOGGER.catching(e);
-			} finally {
-				DBHelper.closeResultSet(rs);
-				DBHelper.closeConnection(conn);
+				list.add(apply);
 			}
-			return list;
+		} catch (SQLException e) {
+			LOGGER.catching(e);
+		} finally {
+			DBHelper.closeResultSet(rs);
+			DBHelper.closeConnection(conn);
 		}
-		return null;
+		return list;
 	}
 
 	public List<Apply> getAll() {
