@@ -60,10 +60,6 @@ body {
 	background-color: #FFF;
 }
 
-.state {
-	margin-bottom: 20px;
-}
-
 .flex-between {
 	display: flex;
 	justify-content: space-between;
@@ -107,4 +103,5 @@ body {
 	display: block;
 	width: 250px;
 	border: none;
+	text-align: left;
 }

@@ -13,7 +13,9 @@
 	src="${pageContext.request.contextPath}/js/jquery-3.3.1.js"></script>
 <script>
 	$("input[name='pass']").on("click", function(){
-
+		window.alert("此为警告框");
+		window.confirm("此为确认框，请单击“确定”或“取消”。");
+		window.prompt("此为提示框，请输入数据");
 	})
 </script>
 <style>

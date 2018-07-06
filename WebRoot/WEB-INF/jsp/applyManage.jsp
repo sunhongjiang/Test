@@ -15,51 +15,6 @@
 <script>
 	$(document).ready(function() {
 
-		$(".unchecked").on("click", function() {
-			$.ajax({
-				url : "showUnchecked",
-				type : "POST",
-
-				success : function(data) {
-					console.log(data);
-
-				},
-				error : function() {
-					alert("获取未审核列表失败");
-				}
-			})
-		});
-
-		$(".passed").on("click", function() {
-			$.ajax({
-				url : "showPassed",
-				type : "POST",
-
-				success : function(data) {
-					console.log(data);
-
-				},
-				error : function() {
-					alert("获取审核通过列表失败");
-				}
-			})
-		});
-
-		$(".unpassed").on("click", function() {
-			$.ajax({
-				url : "showUnpassed",
-				type : "POST",
-
-				success : function(data) {
-					console.log(data);
-
-				},
-				error : function() {
-					alert("获取审核不通过列表失败");
-				}
-			})
-		});
-
 		$(".searcher").on("blur", function() {
 			$.ajax({
 				url : "applySearch",
@@ -77,22 +32,8 @@
 		});
 
 		$(".moredetail").on("click", function() {
-			$.ajax({
-				url : "detail",
-				type : "POST",
-
-				data : {
-					id : $("input[name='id']").val(),
-				},
-
-				success : function(data) {
-					console.log(data);
-				},
-				error : function() {
-					alert("点击查看详细信息失败");
-				}
-			})
-		});
+			$(".myform").submit();
+		})
 
 	});
 </script>
@@ -107,8 +48,16 @@
 			</div>
 			<div class="list">
 				<ul>
-					<li><input type="button" value="申请管理" /></li>
-					<li><input type="button" value="问卷管理" /></li>
+					<li>
+						<form action="showUnchecked" method="post">
+							<input type="submit" value="申请管理" name="applymgr" />
+						</form>
+					</li>
+					<li>
+						<form action="showAllQuestionnaires" method="post">
+							<input type="submit" value="问卷管理" name="questionnairemgr" />
+						</form>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -120,12 +69,26 @@
 					<div style="padding: 10px">
 						<h3>申请管理</h3>
 					</div>
-					<div class="state" style="padding-left: 10px">
-
-						<input type="button" class="unchecked" value="未审核" /> <input
-							type="button" class="passed" value="已通过" /> <input type="button"
-							class="unpassed" value="未通过" />
-
+					<div class="state"
+						style="padding-left: 10px; display: inline-block">
+						<form action="showUnchecked" method="post">
+							<input type="submit" class="unchecked" value="未审核"
+								style="background-color: #FFF; height: 25px; width: 60px; color: #000; border: 1px solid #DBE5ED;" />
+						</form>
+					</div>
+					<div class="state"
+						style="padding-left: 10px; display: inline-block">
+						<form action="showPassed" method="post">
+							<input type="submit" class="passed" value="已通过"
+								style="background-color: #FFF; height: 25px; width: 60px; color: #000; border: 1px solid #DBE5ED;" />
+						</form>
+					</div>
+					<div class="state"
+						style="padding-left: 10px; display: inline-block">
+						<form action="showUnpassed" method="post">
+							<input type="submit" class="unpassed" value="未通过"
+								style="background-color: #FFF; height: 25px; width: 60px; color: #000; border: 1px solid #DBE5ED;" />
+						</form>
 					</div>
 					<div style="padding: 10px;">
 						<div style="display: inline-block">共显示160份，每页显示16份</div>
@@ -141,25 +104,26 @@
 								System.out.print(a.getId());
 						%>
 
-						<div class="moredetail">
-							<form action="/detail" method="post">
+						<form action="detail" method="post" class="myform">
+							<div class="moredetail">
 								<!-- 申请表标题 -->
 								<input type="text" name="title" value="<%=a.getTitle()%>"
-									readonly="readonly" />
+									readonly="readonly" style="text-align: left;" />
 
 								<!-- 申请人 -->
 								<input type="text" name="applier" value="<%=a.getApplier()%>"
-									readonly="readonly" />
+									readonly="readonly" style="text-align: left;" />
 
 								<!-- 申请日期 -->
 								<input type="text" name="date" value="2018.6.29"
-									readonly="readonly" />
+									readonly="readonly" style="text-align: left;" />
 
 								<!-- id -->
 								<input type="text" name="id" value="<%=a.getId()%>"
 									style="display: none" />
-							</form>
-						</div>
+							</div>
+						</form>
+
 
 						<%
 							}

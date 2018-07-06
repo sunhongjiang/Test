@@ -91,8 +91,16 @@
 			</div>
 			<div class="list">
 				<ul>
-					<li><input type="button" value="申请管理" /></li>
-					<li><input type="button" value="问卷管理" /></li>
+					<li>
+						<form action="showUnchecked" method="post">
+							<input type="submit" value="申请管理" name="applymgr" />
+						</form>
+					</li>
+					<li>
+						<form action="showAllQuestionnaires" method="post">
+							<input type="submit" value="问卷管理" name="questionnairemgr" />
+						</form>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -106,9 +114,9 @@
 					</div>
 					
 					<div style="padding-left: 10px;">
-						<div style="display: inline-block"><input type="button" class="add" value="+ 新建问卷" /> </div>
-						<div style="display: inline-block"><input type="button" class="delete" value="删除" /> </div>
-						<div style="display: inline-block; float: right">
+						<div style="display: inline-block"><input type="button" class="add" value="+ 新建问卷" style="background-color: #FFF; height: 25px; width: 80px; color: #000; border: 1px solid #DBE5ED;"/> </div>
+						<div style="display: inline-block"><input type="button" class="delete" value="删除" style="background-color: #FFF; height: 25px; width: 60px; color: #000; border: 1px solid #DBE5ED;"/> </div>
+						<div style="display: inline-block; float: right;padding:10px">
 							<input type="text" placeholder="输入关键字查找..." name="search">
 						</div>
 					</div>
